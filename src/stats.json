@@ -1,0 +1,49 @@
+{
+  "players": {
+    "userdie": { "matches": 5, "wins": 3, "lose": 2, "winrate": "23%" }
+  },
+  "matches": [
+    {
+      "id": 213213531,
+      "win": "dire",
+      "players": { "radiant": ["@userdie"], "dire": ["@plut"] }
+    },
+    {
+      "id": 31243214,
+      "win": "dire",
+      "players": { "radiant": ["@userdie"], "dire": ["@plut"] }
+    },
+    { "id": "12", "win": "dire" },
+    { "id": "21421", "win": "dire" },
+    { "id": "qwe", "win": "dire" },
+    { "id": 2311242, "win": "radiant" },
+    { "id": 234, "win": "dire" },
+    {
+      "id": 321,
+      "win": "dire",
+      "players": {
+        "radiant": [
+          {
+            "id": "1187765456065527869",
+            "bot": true,
+            "system": false,
+            "flags": 0,
+            "username": "Userdie's Bot",
+            "globalName": null,
+            "discriminator": "9187",
+            "avatar": "e804cffcb19d83fc9dc575ff6cff0017",
+            "avatarDecoration": null,
+            "verified": true,
+            "mfaEnabled": false,
+            "createdTimestamp": 1703255752341,
+            "defaultAvatarURL": "https://cdn.discordapp.com/embed/avatars/2.png",
+            "tag": "Userdie's Bot#9187",
+            "avatarURL": "https://cdn.discordapp.com/avatars/1187765456065527869/e804cffcb19d83fc9dc575ff6cff0017.webp",
+            "displayAvatarURL": "https://cdn.discordapp.com/avatars/1187765456065527869/e804cffcb19d83fc9dc575ff6cff0017.webp"
+          }
+        ],
+        "dire": ["<@412950844775071746>"]
+      }
+    }
+  ]
+}
