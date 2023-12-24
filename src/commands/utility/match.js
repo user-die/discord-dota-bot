@@ -28,7 +28,7 @@ module.exports = {
           }
         )
     )
-    .addStringOption((option) =>
+    .addMentionableOption((option) =>
       option
         .setName("player_radiant")
         .setDescription("Игроки света")
