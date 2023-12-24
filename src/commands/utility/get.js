@@ -1,6 +1,4 @@
-const fs = require("node:fs");
-const { Table } = require("embed-table");
-const { SlashCommandBuilder, EmbedBuilder, bold } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 module.exports = {
   category: "utility",
@@ -9,37 +7,20 @@ module.exports = {
     .setDescription("Показать статистику всех матчей"),
 
   async execute(interaction) {
-    const file = JSON.parse(
-      fs.readFileSync("./src/stats.json", { encoding: "utf-8" })
-    );
-
-    id = "Userdie's Bot#9187";
-
-    const map = file.matches.map(
-      (el) => `'\n' ${el.id} ${el.win} ${interaction.user.id}`
-    );
-
-    const string = `${bold("Матчи")} \n${JSON.stringify(map)}`;
-
-    const table = new Table({
-      titles: ["id игры", "Победитель", "Игроки Radiant", "Игроки Dire"],
-      titleIndexes: [0, 12, 27, 46],
-      columnIndexes: [0, 12, 27, 46],
-      start: "`",
-      end: "`",
-      padEnd: 3,
-    });
-
-    table.addRow(["64214", "dire", "userdie", "plut"], { override: 3 });
-    table.addRow(["61452", "radiant", "userdie", "plut"], { override: 3 });
-
     const embed = new EmbedBuilder()
-      .setColor(0x0099ff)
-      .setTitle("Все игры")
-      .addFields(table.toField())
-      .setTimestamp();
+      .setColor(0xff0000)
+      .setAuthor({
+        name: "@userdie",
+        iconURL:
+          "https://sun6-20.userapi.com/67ru5xQtgJfFV3yS8sDkM48mA_dcNhqExTtvkA/sMW2Tskmsco.jpg",
+        url: "https://discordapp.com/users/412950844775071746/",
+      })
+      .setTitle("Таблица с результатами игр")
+      .setURL(
+        "https://docs.google.com/spreadsheets/d/1pFsu_90hMQLqDfFmdLkwjpSStpyk_87JzKspms8nU0s/edit#gid=0"
+      )
+      .setThumbnail("https://i.ytimg.com/vi/wAnz3f9LfqQ/maxresdefault.jpg");
 
     await interaction.reply({ embeds: [embed] });
-    //await interaction.reply(codeBlock(string));
   },
 };

@@ -13,7 +13,54 @@
       "win": "dire",
       "players": { "radiant": ["@userdie"], "dire": ["@plut"] }
     },
-    { "id": 23142, "win": "radiant" },
-    { "id": 234, "win": "dire" }
+    {
+      "id": 23142,
+      "win": "radiant",
+      "players": { "radiant": ["@userdie"], "dire": ["@plut"] }
+    },
+    {
+      "id": 234,
+      "win": "dire",
+      "players": { "radiant": ["@userdie"], "dire": ["@plut"] }
+    },
+    {
+      "id": 231,
+      "win": "radiant",
+      "players": {
+        "radiant": ["userdie, 123, qwe, asd"],
+        "dire": ["123, asd, qwe, userdie"]
+      }
+    },
+    {
+      "id": 123123,
+      "win": "dire",
+      "players": {
+        "radiant": ["<@1187765456065527869>"],
+        "dire": ["<@412950844775071746>"]
+      }
+    },
+    {
+      "id": 123,
+      "win": "dire",
+      "players": {
+        "radiant": ["<@1187765456065527869> , <@412950844775071746>"],
+        "dire": ["<@1187765456065527869> , <@412950844775071746>"]
+      }
+    },
+    {
+      "id": 313132,
+      "win": "dire",
+      "players": { "radiant": ["qwe, 123, ewq"], "dire": ["qweq, 2e41"] }
+    },
+    {
+      "id": 123,
+      "win": "dire",
+      "players": { "radiant": ["qwe, ewq"], "dire": ["ewqd, dsa"] }
+    },
+    {
+      "id": 213,
+      "win": "radiant",
+      "players": { "radiant": ["weq"], "dire": ["ewq"] }
+    }
   ]
 }

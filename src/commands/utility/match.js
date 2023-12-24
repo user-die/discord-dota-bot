@@ -1,5 +1,5 @@
-const fs = require("node:fs");
-const { SlashCommandBuilder } = require("discord.js");
+const axios = require("axios");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 module.exports = {
   category: "utility",
@@ -14,59 +14,38 @@ module.exports = {
     )
     .addStringOption((option) =>
       option
-        .setName("win")
-        .setDescription("Кто победил: свет или тьма?")
-        .setRequired(true)
-        .addChoices(
-          {
-            name: "dire",
-            value: "dire",
-          },
-          {
-            name: "radiant",
-            value: "radiant",
-          }
-        )
-    )
-    .addMentionableOption((option) =>
-      option
-        .setName("player_radiant")
-        .setDescription("Игроки света")
+        .setName("winer-players")
+        .setDescription("Команда победителей")
         .setRequired(true)
     )
     .addStringOption((option) =>
       option
-        .setName("player_dire")
-        .setDescription("Игроки тьмы")
+        .setName("loser-players")
+        .setDescription("Команда проигравших")
         .setRequired(true)
     ),
 
   async execute(interaction) {
     const id = interaction.options.getNumber("match_id", true);
-    const win = interaction.options.getString("win", true);
-    const playersRadiant = interaction.options.getString(
-      "player_radiant",
-      true
-    );
-    const playersDire = interaction.options.getString("player_dire", true);
+    const winerPlayers = interaction.options.getString("winer-players", true);
+    const loserPlayers = interaction.options.getString("loser-players", true);
 
-    let match = {
-      id: parseInt(id),
-      win: win,
+    const message = new EmbedBuilder()
+      .setTitle("Матч добавлен")
+      .setColor(0xff0000)
+      .setDescription(
+        `Id ${id}\nПобедители: ${loserPlayers}\n Проигравшие: ${winerPlayers}\n Добавил: ${interaction.user}`
+      );
 
-      players: {
-        radiant: [playersRadiant],
-        dire: [playersDire],
+    await interaction.reply({ embeds: [message] });
+
+    axios.post("https://sheetdb.io/api/v1/317ga3ng4hhq8", {
+      data: {
+        id: id,
+        Победители: winerPlayers,
+        Проигравшие: loserPlayers,
+        Добавил: `<@${interaction.user.id}>`,
       },
-    };
-
-    const file = JSON.parse(
-      fs.readFileSync("./src/stats.json", { encoding: "utf-8" })
-    );
-
-    file.matches.push(match);
-
-    await interaction.reply(`Матч добавлен. id ${id} win - ${win}`);
-    fs.writeFileSync("./src/stats.json", JSON.stringify(file));
+    });
   },
 };

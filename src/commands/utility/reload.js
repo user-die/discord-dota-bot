@@ -32,7 +32,7 @@ module.exports = {
       const newCommand = require(`../${command.category}/${command.data.name}.js`);
       interaction.client.commands.set(newCommand.data.name, newCommand);
       await interaction.reply(
-        `Command \`${newCommand.data.name}\` was reloaded!`
+        `Команда \`${newCommand.data.name}\` перезагружена!`
       );
     } catch (error) {
       console.error(error);
