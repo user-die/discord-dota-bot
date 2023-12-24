@@ -1,4 +1,5 @@
 const axios = require("axios");
+const { token, clientId, guildId } = require("./../../config.json");
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 module.exports = {
@@ -30,11 +31,41 @@ module.exports = {
     const winerPlayers = interaction.options.getString("winer-players", true);
     const loserPlayers = interaction.options.getString("loser-players", true);
 
+    /*
+    winerPlayers.split(",").forEach((element) => {
+      let response = fetch(
+        `https://discord.com/api/v9/users/${element.replace(/[<@>]/g, "")}`,
+        {
+          headers: {
+            Authorization: `Bot ${token}`,
+          },
+        }
+      );
+
+      let data = response;
+
+      console.log(data);
+    });
+    */
+
+    let response = await fetch(
+      `https://discord.com/api/v9/users/${winerPlayers.replace(/[<@>]/g, "")}`,
+      {
+        headers: {
+          Authorization: `Bot ${token}`,
+        },
+      }
+    );
+
+    let data = await response.json();
+
+    console.log(data);
+
     const message = new EmbedBuilder()
       .setTitle("Матч добавлен")
       .setColor(0xff0000)
       .setDescription(
-        `Id ${id}\nПобедители: ${loserPlayers}\n Проигравшие: ${winerPlayers}\n Добавил: ${interaction.user}`
+        `Id ${id}\nПобедители: ${winerPlayers}\n Проигравшие: ${loserPlayers}\n Добавил: ${interaction.user}`
       );
 
     await interaction.reply({ embeds: [message] });
