@@ -1,5 +1,6 @@
 const fs = require("node:fs");
 const path = require("node:path");
+const keepAlive = require("./server");
 const { Client, Collection, Events, GatewayIntentBits } = require("discord.js");
 const { token, clientId, guildId } = require("./config.json");
 
@@ -85,4 +86,5 @@ client.on(Events.InteractionCreate, async (interaction) => {
   }
 });
 
+keepAlive();
 client.login(token);
