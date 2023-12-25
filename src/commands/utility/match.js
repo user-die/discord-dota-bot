@@ -1,5 +1,4 @@
 const axios = require("axios");
-const { token, clientId, guildId } = require("./../../config.json");
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 module.exports = {
@@ -32,8 +31,10 @@ module.exports = {
     const loserPlayers = interaction.options.getString("loser-players", true);
 
     /*
-    winerPlayers.split(",").forEach((element) => {
-      let response = fetch(
+    const result = [];
+
+    winerPlayers.split(",").forEach(async (element) => {
+      let response = await fetch(
         `https://discord.com/api/v9/users/${element.replace(/[<@>]/g, "")}`,
         {
           headers: {
@@ -42,24 +43,12 @@ module.exports = {
         }
       );
 
-      let data = response;
+      let data = await response.json();
 
-      console.log(data);
+      await push(data.global_name);
     });
-    */
 
-    let response = await fetch(
-      `https://discord.com/api/v9/users/${winerPlayers.replace(/[<@>]/g, "")}`,
-      {
-        headers: {
-          Authorization: `Bot ${token}`,
-        },
-      }
-    );
-
-    let data = await response.json();
-
-    console.log(data);
+    console.log(result);*/
 
     const message = new EmbedBuilder()
       .setTitle("Матч добавлен")
@@ -75,7 +64,7 @@ module.exports = {
         id: id,
         Победители: winerPlayers,
         Проигравшие: loserPlayers,
-        Добавил: `<@${interaction.user.id}>`,
+        Добавил: interaction.user.username,
       },
     });
   },
