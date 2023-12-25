@@ -30,26 +30,6 @@ module.exports = {
     const winerPlayers = interaction.options.getString("winer-players", true);
     const loserPlayers = interaction.options.getString("loser-players", true);
 
-    /*
-    const result = [];
-
-    winerPlayers.split(",").forEach(async (element) => {
-      let response = await fetch(
-        `https://discord.com/api/v9/users/${element.replace(/[<@>]/g, "")}`,
-        {
-          headers: {
-            Authorization: `Bot ${token}`,
-          },
-        }
-      );
-
-      let data = await response.json();
-
-      await push(data.global_name);
-    });
-
-    console.log(result);*/
-
     const message = new EmbedBuilder()
       .setTitle("Матч добавлен")
       .setColor(0xff0000)
